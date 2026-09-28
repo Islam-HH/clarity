@@ -7,21 +7,9 @@
   --color-secondary-t10: rgba(194, 64, 12, 0.1);
   --color-primary-t20: rgb(234, 88, 12, 0.2);
   --color-primary-t10: rgb(234, 88, 12, 0.1);
-  --color-gradient: linear-gradient(
-    90deg,
-    var(--color-primary),
-    var(--color-secondary)
-  );
-  --color-gradient-180: linear-gradient(
-    360deg,
-    var(--color-primary),
-    var(--color-secondary)
-  );
-  --color-gradient-reverse: linear-gradient(
-    90deg,
-    var(--color-secondary),
-    var(--color-primary)
-  );
+  --color-gradient: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  --color-gradient-180: linear-gradient(360deg, var(--color-primary), var(--color-secondary));
+  --color-gradient-reverse: linear-gradient(90deg, var(--color-secondary), var(--color-primary));
   --color-gradient-three: linear-gradient(
     90deg,
     var(--color-main-dark),
@@ -851,13 +839,6 @@ section {
   color: transparent;
 }
 
-.navbar .nav-item .nav-link.active {
-  color: var(--color-primary);
-  text-decoration: underline;
-  text-underline-offset: 0.5rem;
-  text-decoration-thickness: 0.16rem;
-}
-
 .my-btn {
   border-radius: 2rem;
   border: 0.125rem solid var(--border-gray);
@@ -1135,9 +1116,33 @@ section {
   --bs-nav-link-color: var(--text-gray);
 }
 
-.nav-link.active {
+.nav-item {
+  position: relative;
+  /* overflow: hidden; */
+}
+
+.nav-item.dropdown {
+  overflow: visible;
+}
+
+.navbar .nav-item .nav-link.active {
   --bs-nav-underline-link-active-color: var(--color-primary);
-  border-bottom-width: 1px;
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: 250ms;
+}
+.nav-item .active-indicator {
+  background-color: var(--color-primary);
+  height: 2px;
+  transition: 250ms;
+  width: 0%;
+  margin: auto;
+  position: absolute;
+  left: 5%;
+  bottom: 0;
+}
+.nav-item .nav-link.active + .active-indicator {
+  width: 90%;
 }
 
 .tech-card {
@@ -1292,8 +1297,7 @@ section {
 }
 
 .accordion-item:not(:first-of-type) {
-  border-top: var(--bs-accordion-border-width) solid
-    var(--bs-accordion-border-color);
+  border-top: var(--bs-accordion-border-width) solid var(--bs-accordion-border-color);
 }
 
 .accordion-item {
@@ -1517,7 +1521,6 @@ textarea:focus {
   .hover-shadow-primary:hover {
     box-shadow: 0px 15px 15px -10px var(--color-primary);
   }
-
   .hover-shadow-gray:hover {
     box-shadow: 0px 15px 15px -10px var(--border-gray);
   }
@@ -1602,6 +1605,10 @@ textarea:focus {
   }
   .hover-pointer:hover {
     cursor: pointer;
+  }
+  .demo-btn:hover {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
   }
 }
 
